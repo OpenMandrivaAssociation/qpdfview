@@ -28,3 +28,10 @@ make install INSTALL_ROOT=%{buildroot}
 %{_datadir}/applications/qpdfview.desktop
 %{_mandir}/man1/qpdfview.1*
 %{_datadir}/qpdfview/
+
+
+%changelog
+* Thu Jul 12 2012 Dmitry Mikhirev <dmikhirev@mandriva.org> 0.3.1-1
++ Revision: 809044
+- imported package qpdfview
+

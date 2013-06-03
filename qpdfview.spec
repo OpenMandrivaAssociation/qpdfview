@@ -25,7 +25,10 @@ qpdfview is a light-weight tabbed PDF, DJVU and PostScript viewer.
 
 %build
 lrelease %{name}.pro
-%qmake_qt4 QMAKE_CXXFLAGS_RELEASE=  %{name}.pro
+%qmake_qt4 \
+	QMAKE_CXXFLAGS_RELEASE=  \
+	PLUGIN_INSTALL_PATH="%{_libdir}/%{name}" \
+	%{name}.pro
 %make
 
 %install

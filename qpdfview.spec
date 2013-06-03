@@ -1,37 +1,54 @@
 Name:		qpdfview
-Summary:	Tabbed PDF viewer
-Version:	0.3.1
+Summary:	Light-weight tabbed PDF, DJVU and PostScript viewer
+Version:	0.4.3
 Release:	1
-License:	GPLv2
+License:	GPLv2+
 Group:		Office
 URL:		https://launchpad.net/qpdfview
 Source0:	https://launchpad.net/qpdfview/trunk/%{version}/+download/%{name}-%{version}.tar.gz
-BuildRequires:	pkgconfig(poppler-qt4)
+Patch0:		qpdfview-0.4-desktop.patch
+BuildRequires:	imagemagick
 BuildRequires:	cups-devel
+BuildRequires:	magic-devel
 BuildRequires:	qt4-devel
+BuildRequires:	pkgconfig(ddjvuapi)
+BuildRequires:	pkgconfig(libspectre)
+BuildRequires:	pkgconfig(poppler-qt4)
+BuildRequires:	pkgconfig(zlib)
 
 %description
-qpdfview is a tabbed PDF viewer using the poppler library.
+qpdfview is a light-weight tabbed PDF, DJVU and PostScript viewer.
 
 %prep
 %setup -q
+%patch0 -p0
 
 %build
-%qmake_qt4
+lrelease %{name}.pro
+%qmake_qt4 QMAKE_CXXFLAGS_RELEASE=  %{name}.pro
 %make
 
 %install
 make install INSTALL_ROOT=%{buildroot}
 
-%files
-%{_bindir}/qpdfview
-%{_datadir}/applications/qpdfview.desktop
-%{_mandir}/man1/qpdfview.1*
-%{_datadir}/qpdfview/
+# install menu icons
+for N in 16 32 48 64 128;
+do
+convert icons/%{name}.svg -resize ${N}x${N} $N.png;
+install -D -m 0644 $N.png %{buildroot}%{_iconsdir}/hicolor/${N}x${N}/apps/%{name}.png
+done
+install -D -m 0644 icons/%{name}.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
 
+%find_lang %{name} --with-qt
 
-%changelog
-* Thu Jul 12 2012 Dmitry Mikhirev <dmikhirev@mandriva.org> 0.3.1-1
-+ Revision: 809044
-- imported package qpdfview
-
+%files -f %{name}.lang
+%{_bindir}/%{name}
+%{_libdir}/%{name}/libqpdfview_djvu.so
+%{_libdir}/%{name}/libqpdfview_pdf.so
+%{_libdir}/%{name}/libqpdfview_ps.so
+%{_mandir}/man1/%{name}.1*
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/%{name}/%{name}.svg
+%{_datadir}/%{name}/help.html
+%{_datadir}/%{name}/qpdfview_ast.qm
+%{_iconsdir}/hicolor/*/apps/%{name}.*

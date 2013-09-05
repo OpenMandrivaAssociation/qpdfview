@@ -1,6 +1,6 @@
 Name:		qpdfview
 Summary:	Light-weight tabbed PDF, DJVU and PostScript viewer
-Version:	0.4.3
+Version:	0.4.4
 Release:	1
 License:	GPLv2+
 Group:		Office

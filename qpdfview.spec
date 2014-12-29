@@ -1,12 +1,12 @@
 Name:		qpdfview
 Summary:	Light-weight tabbed PDF, DJVU and PostScript viewer
-Version:	0.4.8
+Version:	0.4.13
 Release:	1
 License:	GPLv2+
 Group:		Office
 URL:		https://launchpad.net/qpdfview
-Source0:	https://launchpad.net/qpdfview/trunk/0.4.8/+download/%{name}-%{version}.tar.gz
-Patch0:		qpdfview-0.4-desktop.patch
+Source0:	https://launchpad.net/qpdfview/trunk/0.4.11.1/+download/%{name}-%{version}.tar.gz
+#Patch0:		qpdfview-0.4-desktop.patch
 BuildRequires:	imagemagick
 BuildRequires:	cups-devel
 BuildRequires:	magic-devel
@@ -21,18 +21,21 @@ qpdfview is a light-weight tabbed PDF, DJVU and PostScript viewer.
 
 %prep
 %setup -q
-%patch0 -p0
+# % patch0 -p1
 
 %build
 lrelease %{name}.pro
 %qmake_qt4 \
-	QMAKE_CXXFLAGS_RELEASE=  \
+        QMAKE_STRIP="" \
 	PLUGIN_INSTALL_PATH="%{_libdir}/%{name}" \
+	DATA_INSTALLPATH="%{_datadir}/%{name}" \
 	%{name}.pro
 %make
 
 %install
-make install INSTALL_ROOT=%{buildroot}
+%makeinstall_std INSTALL_ROOT=%{buildroot}
+install -Dm 0644 icons/%{name}.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
+install -Dm 0644 icons/%{name}.svg %{buildroot}%{_datadir}/%{name}/%{name}.svg
 
 # install menu icons
 for N in 16 32 48 64 128;
@@ -55,3 +58,4 @@ install -D -m 0644 icons/%{name}.svg %{buildroot}%{_iconsdir}/hicolor/scalable/a
 %{_datadir}/%{name}/help*.html
 %{_datadir}/%{name}/qpdfview_ast.qm
 %{_iconsdir}/hicolor/*/apps/%{name}.*
+%{_datadir}/appdata/*

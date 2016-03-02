@@ -1,18 +1,18 @@
 Name:		qpdfview
 Summary:	Light-weight tabbed PDF, DJVU and PostScript viewer
-Version:	0.4.13
-Release:	3
+Version:	0.4.16
+Release:	1
 License:	GPLv2+
 Group:		Office
 URL:		https://launchpad.net/qpdfview
-Source0:	https://launchpad.net/qpdfview/trunk/0.4.11.1/+download/%{name}-%{version}.tar.gz
-#Patch0:		qpdfview-0.4-desktop.patch
+Source0:	https://launchpad.net/qpdfview/trunk/0.4.16/+download/%{name}-%{version}.tar.gz
 BuildRequires:	imagemagick
 BuildRequires:	cups-devel
 BuildRequires:	magic-devel
 BuildRequires:	qt5-devel
 BuildRequires:	qt5-linguist-tools
 BuildRequires:	pkgconfig(ddjvuapi)
+BuildRequires:	cmake(Qt5Svg)
 BuildRequires:	pkgconfig(libspectre)
 BuildRequires:	pkgconfig(poppler-qt5)
 BuildRequires:	pkgconfig(zlib)
@@ -53,6 +53,7 @@ install -D -m 0644 icons/%{name}.svg %{buildroot}%{_iconsdir}/hicolor/scalable/a
 %{_libdir}/%{name}/libqpdfview_djvu.so
 %{_libdir}/%{name}/libqpdfview_pdf.so
 %{_libdir}/%{name}/libqpdfview_ps.so
+%{_libdir}/%{name}/libqpdfview_image.so
 %{_mandir}/man1/%{name}.1*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/%{name}/%{name}.svg

@@ -1,11 +1,11 @@
 Name:		qpdfview
 Summary:	Light-weight tabbed PDF, DJVU and PostScript viewer
-Version:	0.4.16
-Release:	2
+Version:	0.4.17beta1
+Release:	1
 License:	GPLv2+
 Group:		Office
 URL:		https://launchpad.net/qpdfview
-Source0:	https://launchpad.net/qpdfview/trunk/0.4.16/+download/%{name}-%{version}.tar.gz
+Source0:	https://launchpad.net/qpdfview/trunk/%{version}/+download/%{name}-%{version}.tar.gz
 BuildRequires:	imagemagick
 BuildRequires:	cups-devel
 BuildRequires:	magic-devel

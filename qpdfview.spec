@@ -16,6 +16,7 @@ BuildRequires:	cmake(Qt5Svg)
 BuildRequires:	pkgconfig(libspectre)
 BuildRequires:	pkgconfig(poppler-qt5)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:	pkgconfig(krb5)
 
 %description
 qpdfview is a light-weight tabbed PDF, DJVU and PostScript viewer.

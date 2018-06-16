@@ -46,9 +46,8 @@ install -D -m 0644 $N.png %{buildroot}%{_iconsdir}/hicolor/${N}x${N}/apps/%{name
 done
 install -D -m 0644 icons/%{name}.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
 
-%find_lang %{name} --with-qt || touch %{name}.lang
 
-%files -f %{name}.lang
+%files  
 %{_bindir}/%{name}
 %{_libdir}/%{name}/libqpdfview_djvu.so
 %{_libdir}/%{name}/libqpdfview_pdf.so
@@ -58,6 +57,5 @@ install -D -m 0644 icons/%{name}.svg %{buildroot}%{_iconsdir}/hicolor/scalable/a
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/%{name}/%{name}.svg
 %{_datadir}/%{name}/help*.html
-#{_datadir}/%{name}/qpdfview_ast.qm
 %{_iconsdir}/hicolor/*/apps/%{name}.*
 %{_datadir}/appdata/*

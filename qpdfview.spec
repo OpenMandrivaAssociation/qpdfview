@@ -1,7 +1,7 @@
 Name:		qpdfview
 Summary:	Light-weight tabbed PDF, DJVU and PostScript viewer
 Version:	0.4.18
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Office
 URL:		https://launchpad.net/qpdfview
@@ -60,3 +60,4 @@ install -D -m 0644 icons/%{name}.svg %{buildroot}%{_iconsdir}/hicolor/scalable/a
 %{_datadir}/%{name}/help*.html
 %{_iconsdir}/hicolor/*/apps/%{name}.*
 %{_datadir}/appdata/*
+%{_datadir}/qpdfview/qpdfview_*.qm

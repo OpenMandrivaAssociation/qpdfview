@@ -1,6 +1,6 @@
 Name:		qpdfview
 Summary:	Light-weight tabbed PDF, DJVU and PostScript viewer
-Version:	0.4.18
+Version:	0.5
 Release:	1
 License:	GPLv2+
 Group:		Office
@@ -23,7 +23,6 @@ qpdfview is a light-weight tabbed PDF, DJVU and PostScript viewer.
 
 %prep
 %setup -q
-# % patch0 -p1
 
 %build
 %{_libdir}/qt5/bin/lrelease %{name}.pro
@@ -47,8 +46,10 @@ install -D -m 0644 $N.png %{buildroot}%{_iconsdir}/hicolor/${N}x${N}/apps/%{name
 done
 install -D -m 0644 icons/%{name}.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.svg
 
+	
+%find_lang %{name} --with-qt --without-mo
 
-%files  
+%files -f %{name}.lang  
 %{_bindir}/%{name}
 %{_libdir}/%{name}/libqpdfview_djvu.so
 %{_libdir}/%{name}/libqpdfview_pdf.so
@@ -59,4 +60,4 @@ install -D -m 0644 icons/%{name}.svg %{buildroot}%{_iconsdir}/hicolor/scalable/a
 %{_datadir}/%{name}/%{name}.svg
 %{_datadir}/%{name}/help*.html
 %{_iconsdir}/hicolor/*/apps/%{name}.*
-%{_datadir}/appdata/*
+%{_datadir}/metainfo/qpdfview.appdata.xml

@@ -49,7 +49,7 @@ install -D -m 0644 icons/%{name}.svg %{buildroot}%{_iconsdir}/hicolor/scalable/a
 	
 %find_lang %{name} --with-qt --without-mo
 
-%files  
+%files -f %{name}.lang  
 %{_bindir}/%{name}
 %{_libdir}/%{name}/libqpdfview_djvu.so
 %{_libdir}/%{name}/libqpdfview_pdf.so

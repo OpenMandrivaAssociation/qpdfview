@@ -58,4 +58,4 @@ install -D -m 0644 icons/%{name}.svg %{buildroot}%{_iconsdir}/hicolor/scalable/a
 %{_datadir}/%{name}/%{name}.svg
 %{_datadir}/%{name}/help*.html
 %{_iconsdir}/hicolor/*/apps/%{name}.*
-%{_datadir}/appdata/*
+#{_datadir}/appdata/*
